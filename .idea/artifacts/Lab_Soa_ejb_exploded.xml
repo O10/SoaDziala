@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="Lab_Soa:ejb exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lab_Soa_ejb_exploded.rar</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Lab_Soa/ejb/EJB" />
+      <element id="module-output" name="Lab_Soa" />
+    </root>
+  </artifact>
+</component>
