@@ -9,15 +9,13 @@ import javax.persistence.*;
 @Table(name = "element", schema = "public", catalog = "soa")
 public class ElementEntity {
     private int elementId;
-    private String elementName;
     private String nameProperty;
     private int chargeProperty;
     private String attributeProperty;
-    private CategoryEntity categoryByEnvironmentId;
+    private CategoryEntity categoryByCategoryId;
 
     @Id
-    @GeneratedValue
-    @Column(name = "element_id")
+    @Column(name = "element_id", nullable = false, insertable = true, updatable = true)
     public int getElementId() {
         return elementId;
     }
@@ -27,17 +25,7 @@ public class ElementEntity {
     }
 
     @Basic
-    @Column(name = "element_name")
-    public String getElementName() {
-        return elementName;
-    }
-
-    public void setElementName(String elementName) {
-        this.elementName = elementName;
-    }
-
-    @Basic
-    @Column(name = "name_property")
+    @Column(name = "name_property", nullable = false, insertable = true, updatable = true, length = 20)
     public String getNameProperty() {
         return nameProperty;
     }
@@ -47,7 +35,7 @@ public class ElementEntity {
     }
 
     @Basic
-    @Column(name = "charge_property")
+    @Column(name = "charge_property", nullable = false, insertable = true, updatable = true)
     public int getChargeProperty() {
         return chargeProperty;
     }
@@ -57,7 +45,7 @@ public class ElementEntity {
     }
 
     @Basic
-    @Column(name = "attribute_property")
+    @Column(name = "attribute_property", nullable = false, insertable = true, updatable = true, length = 20)
     public String getAttributeProperty() {
         return attributeProperty;
     }
@@ -77,7 +65,6 @@ public class ElementEntity {
         if (elementId != that.elementId) return false;
         if (attributeProperty != null ? !attributeProperty.equals(that.attributeProperty) : that.attributeProperty != null)
             return false;
-        if (elementName != null ? !elementName.equals(that.elementName) : that.elementName != null) return false;
         if (nameProperty != null ? !nameProperty.equals(that.nameProperty) : that.nameProperty != null) return false;
 
         return true;
@@ -86,7 +73,6 @@ public class ElementEntity {
     @Override
     public int hashCode() {
         int result = elementId;
-        result = 31 * result + (elementName != null ? elementName.hashCode() : 0);
         result = 31 * result + (nameProperty != null ? nameProperty.hashCode() : 0);
         result = 31 * result + chargeProperty;
         result = 31 * result + (attributeProperty != null ? attributeProperty.hashCode() : 0);
@@ -94,12 +80,12 @@ public class ElementEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "environment_id", referencedColumnName = "category_id")
-    public CategoryEntity getCategoryByEnvironmentId() {
-        return categoryByEnvironmentId;
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    public CategoryEntity getCategoryByCategoryId() {
+        return categoryByCategoryId;
     }
 
-    public void setCategoryByEnvironmentId(CategoryEntity categoryByEnvironmentId) {
-        this.categoryByEnvironmentId = categoryByEnvironmentId;
+    public void setCategoryByCategoryId(CategoryEntity categoryByCategoryId) {
+        this.categoryByCategoryId = categoryByCategoryId;
     }
 }

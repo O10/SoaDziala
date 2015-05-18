@@ -1,25 +1,25 @@
 package model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by Wojtek on 18/05/15.
  */
 @Entity
-@Table(name = "category")
+@Table(name = "category", schema = "public", catalog = "soa")
 @NamedQueries({
-        @NamedQuery(name="Category.findByName", query="select c from CategoryEntity c where c.categoryName = :name"),
-        @NamedQuery(name="Category.findAll", query = "select c from CategoryEntity c"),
-        @NamedQuery(name="Category.findNames", query = "select distinct c.categoryName from CategoryEntity c")
+        @NamedQuery(name = "Category.findAll", query = "select c from CategoryEntity c")
 })
 public class CategoryEntity {
     private int categoryId;
     private String categoryName;
     private int sizeProperty;
+    private CategoryGroupEntity categoryGroupByCategoryGroupId;
+    private Collection<ElementEntity> elementsByCategoryId;
 
     @Id
-    @GeneratedValue
-    @Column(name = "category_id")
+    @Column(name = "category_id", nullable = false, insertable = true, updatable = true)
     public int getCategoryId() {
         return categoryId;
     }
@@ -29,7 +29,7 @@ public class CategoryEntity {
     }
 
     @Basic
-    @Column(name = "category_name")
+    @Column(name = "category_name", nullable = false, insertable = true, updatable = true, length = 20)
     public String getCategoryName() {
         return categoryName;
     }
@@ -39,7 +39,7 @@ public class CategoryEntity {
     }
 
     @Basic
-    @Column(name = "size_property")
+    @Column(name = "size_property", nullable = false, insertable = true, updatable = true)
     public int getSizeProperty() {
         return sizeProperty;
     }
@@ -68,5 +68,24 @@ public class CategoryEntity {
         result = 31 * result + (categoryName != null ? categoryName.hashCode() : 0);
         result = 31 * result + sizeProperty;
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "category_group_id", referencedColumnName = "category_group_id")
+    public CategoryGroupEntity getCategoryGroupByCategoryGroupId() {
+        return categoryGroupByCategoryGroupId;
+    }
+
+    public void setCategoryGroupByCategoryGroupId(CategoryGroupEntity categoryGroupByCategoryGroupId) {
+        this.categoryGroupByCategoryGroupId = categoryGroupByCategoryGroupId;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "categoryByCategoryId")
+    public Collection<ElementEntity> getElementsByCategoryId() {
+        return elementsByCategoryId;
+    }
+
+    public void setElementsByCategoryId(Collection<ElementEntity> elementsByCategoryId) {
+        this.elementsByCategoryId = elementsByCategoryId;
     }
 }

@@ -1571,10 +1571,12 @@
     </table>
     <table name="category" schema="public" catalog="soa" type="TABLE">
       <column name="category_id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnY2F0ZWdvcnlfY2F0ZWdvcnlfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="category_group_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="category_name" sqlType="varchar" precision="20" scale="0" nullable="false" jdbcType="12"/>
       <column name="size_property" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="category_pkey" columns="category_id"/>
-      <exported-key name="element_environment_id_fkey" table="element" schema="public" catalog="soa" columns="environment_id"/>
+      <foreign-key name="category_category_group_id_fkey" columns="category_group_id" ref-table="category_group" ref-schema="public" ref-catalog="" ref-columns="category_group_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="element_category_id_fkey" table="element" schema="public" catalog="soa" columns="category_id"/>
     </table>
     <table name="category_category_id_seq" schema="public" catalog="soa" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1588,17 +1590,54 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
+    <table name="category_group" schema="public" catalog="soa" type="TABLE">
+      <column name="category_group_id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnY2F0ZWdvcnlfZ3JvdXBfY2F0ZWdvcnlfZ3JvdXBfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="category_group_name" sqlType="varchar" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="category_group_pkey" columns="category_group_id"/>
+      <exported-key name="category_category_group_id_fkey" table="category" schema="public" catalog="soa" columns="category_group_id"/>
+    </table>
+    <table name="category_group_category_group_id_seq" schema="public" catalog="soa" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
     <table name="element" schema="public" catalog="soa" type="TABLE">
       <column name="element_id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnZWxlbWVudF9lbGVtZW50X2lkX3NlcSc6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
-      <column name="element_name" sqlType="varchar" precision="20" scale="0" nullable="false" jdbcType="12"/>
-      <column name="environment_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="element_group_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="category_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="name_property" sqlType="varchar" precision="20" scale="0" nullable="false" jdbcType="12"/>
       <column name="charge_property" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="attribute_property" sqlType="varchar" precision="20" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="element_pkey" columns="element_id"/>
-      <foreign-key name="element_environment_id_fkey" columns="environment_id" ref-table="category" ref-schema="public" ref-catalog="" ref-columns="category_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="element_category_id_fkey" columns="category_id" ref-table="category" ref-schema="public" ref-catalog="" ref-columns="category_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="element_element_group_id_fkey" columns="element_group_id" ref-table="element_group" ref-schema="public" ref-catalog="" ref-columns="element_group_id" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="element_element_id_seq" schema="public" catalog="soa" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="element_group" schema="public" catalog="soa" type="TABLE">
+      <column name="element_group_id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnZWxlbWVudF9ncm91cF9lbGVtZW50X2dyb3VwX2lkX3NlcSc6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="element_group_name" sqlType="varchar" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="element_group_pkey" columns="element_group_id"/>
+      <exported-key name="element_element_group_id_fkey" table="element" schema="public" catalog="soa" columns="element_group_id"/>
+    </table>
+    <table name="element_group_element_group_id_seq" schema="public" catalog="soa" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -1621,11 +1660,6 @@
       <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-    </table>
-    <table name="hibernate_tut" schema="public" catalog="soa" type="TABLE">
-      <column name="id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="name" sqlType="varchar" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="hibernate_tut_pkey" columns="id"/>
     </table>
     <procedure name="RI_FKey_cascade_del" schema="pg_catalog" catalog="soa" type="2" remarks="cmVmZXJlbnRpYWwgaW50ZWdyaXR5IE9OIERFTEVURSBDQVNDQURF">
       <prototype>

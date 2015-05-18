@@ -32,8 +32,6 @@ public class CategoryView {
     }
 
     public String save(){
-        System.out.println("UWAGA: " + category.getCategoryName() + category.getSizeProperty());
-        this.categoryService.saveCategory(category);
         return "good";
     }
 

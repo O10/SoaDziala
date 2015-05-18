@@ -1,6 +1,7 @@
 package service;
 
 import model.CategoryEntity;
+import model.CategoryGroupEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,7 +23,7 @@ public class CategoryService {
 
     public void updateCategory(CategoryEntity category) { this.em.merge(category); }
 
-    public List<CategoryEntity> getAllCategories() { return this.em.createNamedQuery("Category.findAll").getResultList(); }
+    public List<CategoryGroupEntity> getAllCategoryGroups() { return this.em.createNamedQuery("CategoryGroup.findAll").getResultList(); }
 
-    public List<CategoryEntity> getCategoryName() { return this.em.createNamedQuery("Category.findNames").getResultList(); }
+    public List<CategoryEntity> getAllCategories() { return this.em.createNamedQuery("Category.findAll").getResultList(); }
 }
