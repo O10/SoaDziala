@@ -17,7 +17,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="NewPersistenceUnit" />
-          <factory-entry name="catalog" />
+          <factory-entry name="catalog" value="a49928b7-1944-4093-92f5-b978918d4d41" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
       </configuration>
@@ -38,11 +38,11 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JBoss Weld-2.0.3" level="project" />
-    <orderEntry type="library" name="Mojarra-2.2.1" level="project" />
     <orderEntry type="library" name="ejb-3.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="JBoss 8.2.0.Final" level="application_server_libraries" />
     <orderEntry type="library" name="org.hibernate:hibernate-entitymanager:4.3.10.Final" level="project" />
     <orderEntry type="library" name="postgresql:postgresql:9.0-801.jdbc4" level="project" />
     <orderEntry type="library" name="org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" level="project" />
+    <orderEntry type="library" name="Mojarra-2.2.1" level="project" />
   </component>
 </module>

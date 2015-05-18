@@ -13,7 +13,7 @@ import java.util.Map;
 public abstract class GenericDAO<T> {
     private final static String UNIT_NAME = "catalog";
 
-    @PersistenceContext(unitName = UNIT_NAME)
+
     private EntityManager em;
 
     private Class<T> entityClass;

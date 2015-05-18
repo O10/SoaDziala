@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
  * Created by Wojtek on 16/05/15.
  */
 @ManagedBean(name = "elementBean")
-public class elementBean {
+public class ElementBean {
     private String name;
     private Integer charge;
     private String attribute;

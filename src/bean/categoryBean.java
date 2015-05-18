@@ -1,28 +1,38 @@
 package bean;
 
+import service.CategoryService;
+
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 /**
- * Created by Wojtek on 16/05/15.
+ * Created by O10 on 18.05.15.
  */
 
-@ManagedBean(name = "categoryBean")
-public class categoryBean {
-    private Integer size;
+@ManagedBean(name ="categoryBean")
+@RequestScoped
+public class CategoryBean {
+    @EJB
+    CategoryService categoryService;
 
-    public void addCategory() {
-        System.out.println("");
+    private String categoryName;
+
+    private int size;
+
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void editCategory() {
-        System.out.println("");
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public Integer getSize() {
+    public int getSize() {
         return size;
     }
 
-    public void setSize(Integer size) {
+    public void setSize(int size) {
         this.size = size;
     }
 }
