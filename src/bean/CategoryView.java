@@ -1,5 +1,6 @@
-package model;
+package bean;
 
+import model.CategoryEntity;
 import service.CategoryService;
 
 import javax.ejb.EJB;
@@ -12,21 +13,27 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean(name = "categoryView")
 @RequestScoped
 public class CategoryView {
+
     @EJB
     CategoryService categoryService;
 
-    private Category category;
+    private CategoryEntity category;
 
-    public Category getCategory() {
+    public CategoryView() {
+        category = new CategoryEntity();
+    }
+
+    public CategoryEntity getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryEntity category) {
         this.category = category;
     }
 
     public String save(){
-        this.categoryService.save(category);
+        System.out.println("UWAGA: " + category.getCategoryName() + category.getSizeProperty());
+        this.categoryService.saveCategory(category);
         return "good";
     }
 
