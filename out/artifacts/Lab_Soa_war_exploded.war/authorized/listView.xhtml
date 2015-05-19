@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:view>
+    <h:button value="Dodaj Element" outcome="addElement" style="width: 300px; height: 100px;"/>
+    <h:button value="Dodaj Kategorię" outcome="addCategory" style="width: 300px; height: 100px;"/>
+    <ui:repeat value="#{listView.categoryGroupList}" var="categoryGroup">
+        <table>
+            <tr>
+                <td><font size="15">#{categoryGroup.categoryGroupName}</font></td>
+            </tr>
+            <ui:repeat value="#{categoryGroup.categoriesByCategoryGroupId}" var="category">
+                <tr>
+                    <td><b>#{category.categoryName}</b></td>
+                    <td>#{category.sizeProperty}</td>
+                    <td><h:commandButton action="#{listView.deleteCategoryEntity}" value="Usuń"
+                                         type="button"/></td>
+                    <td><h:button value="Edytuj" outcome="addCategory"><f:param name="categoryID"
+                                                                                value="#{category.categoryId}"/></h:button>
+                    </td>
+                </tr>
+
+                <ui:repeat value="#{category.elementsByCategoryId}" var="element">
+                    <tr>
+                        <td colspan="4">--------------------------------------------#{element.elementGroupEntity.elementGroupName}</td>
+                        <td>#{element.nameProperty}</td>
+                        <td>#{element.chargeProperty}</td>
+                        <td>#{element.attributeProperty}</td>
+                        <td><h:button value="Edytuj" outcome="addElement"><f:param name="elementID"
+                                                                                   value="#{element.elementId}"/></h:button>
+                        </td>
+                        <td><h:commandButton action="#{listView.deleteElementEntity(element.elementId)}" value="Usuń"
+                                             type="button"/></td>
+                    </tr>
+                </ui:repeat>
+            </ui:repeat>
+        </table>
+    </ui:repeat>
+</f:view>
+</html>
