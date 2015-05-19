@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Collection;
 @NamedQueries({
         @NamedQuery(name = "CategoryGroup.findAll", query = "select c from CategoryGroupEntity c")
 })
-public class CategoryGroupEntity {
+public class CategoryGroupEntity implements Serializable {
     private int categoryGroupId;
     private String categoryGroupName;
     private Collection<CategoryEntity> categoriesByCategoryGroupId;

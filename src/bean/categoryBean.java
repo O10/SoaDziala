@@ -1,6 +1,6 @@
 package bean;
 
-import service.CategoryService;
+import service.DAOService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -10,11 +10,11 @@ import javax.faces.bean.RequestScoped;
  * Created by O10 on 18.05.15.
  */
 
-@ManagedBean(name ="categoryBean")
+@ManagedBean(name = "categoryBean")
 @RequestScoped
 public class CategoryBean {
     @EJB
-    CategoryService categoryService;
+    DAOService DAOService;
 
     private String categoryName;
 

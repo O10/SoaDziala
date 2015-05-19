@@ -12,8 +12,8 @@
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/soa"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
-            <property name="hibernate.connection.username"/>
-            <property name="hibernate.connection.password"/>
+            <property name="hibernate.connection.username" value="soa"/>
+            <property name="hibernate.connection.password" value="soa"/>
             <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>

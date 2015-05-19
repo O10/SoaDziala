@@ -1,6 +1,9 @@
 package model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -11,7 +14,7 @@ import java.util.Collection;
 @NamedQueries({
         @NamedQuery(name = "Category.findAll", query = "select c from CategoryEntity c")
 })
-public class CategoryEntity {
+public class CategoryEntity implements Serializable {
     private int categoryId;
     private String categoryName;
     private int sizeProperty;
@@ -19,6 +22,8 @@ public class CategoryEntity {
     private Collection<ElementEntity> elementsByCategoryId;
 
     @Id
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
     @Column(name = "category_id", nullable = false, insertable = true, updatable = true)
     public int getCategoryId() {
         return categoryId;

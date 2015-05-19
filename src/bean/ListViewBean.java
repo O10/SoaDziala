@@ -2,7 +2,8 @@ package bean;
 
 import model.CategoryEntity;
 import model.CategoryGroupEntity;
-import service.CategoryService;
+import model.ElementEntity;
+import service.DAOService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -18,21 +19,32 @@ public class ListViewBean {
     List<CategoryGroupEntity> categoryGroupList;
 
     @EJB
-    CategoryService categoryService;
+    DAOService DAOService;
 
     public ListViewBean() {
     }
 
     public List<CategoryGroupEntity> getCategoryGroupList() {
         if (this.categoryGroupList == null) {
-            categoryGroupList = categoryService.getAllCategoryGroups();
+            categoryGroupList = DAOService.getAllCategoryGroups();
         }
         return categoryGroupList;
     }
 
-    public String save(){
+    public String deleteCategoryEntity(int id) {
+        System.out.println("Deleting id " + id);
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setCategoryId(id);
+        DAOService.deleteCategory(categoryEntity);
+        return "listView";
+    }
 
-        return "good";
+    public String deleteElementEntity(int elementID) {
+        System.out.println("Deleting id " + elementID);
+        ElementEntity elementEntity = new ElementEntity();
+        elementEntity.setElementId(elementID);
+        DAOService.deleteElement(elementEntity);
+        return "listView";
     }
 
 

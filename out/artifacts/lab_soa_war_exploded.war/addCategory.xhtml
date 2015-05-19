@@ -8,6 +8,9 @@
 <f:view>
     <h:form>
         <h:panelGrid columns="2">
+            <h:outputLabel for="groupField" value="Grupa Kategorii"/> <h:selectOneMenu  id="groupField" value="#{categoryView.categoryGroupId}">
+                <f:selectItems value="#{categoryView.categoryGroupEntities}" var="c" itemLabel="#{c.categoryGroupName}" itemValue="#{c.categoryGroupId}" />
+            </h:selectOneMenu>
             <h:outputLabel for="nazwaField" value="Nazwa"/> <h:inputText id="nazwaField" value="#{categoryView.category.categoryName}"/>
             <h:outputLabel for="sizeField" value="Rozmiar"/> <h:inputText id="sizeField" converter="javax.faces.Integer" value="#{categoryView.category.sizeProperty}"/>
             <h:commandButton value="Wyślij" action="#{categoryView.save}" type="submit"/>

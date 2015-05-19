@@ -3,17 +3,29 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h2>JSF 2.0 Hello World Example - hello.xhtml</h2>
     <h:form>
         <h:panelGrid columns="2">
-            <h:outputLabel for="nazwaField" value="Nazwa"/> <h:inputText id="nazwaField" value="#{elementBean.name}"/>
-            <h:outputLabel for="namePropField" value="Nazwa właściwości"/> <h:inputText id="namePropField" value="#{elementBean.nameProperty}"/>
-            <h:outputLabel for="sizeField" value="Wartość"/> <h:inputText id="sizeField" converter="javax.faces.Integer" value="#{elementBean.size}"/>
-            <h:outputLabel for="attributeField" value="Atrybut"/> <h:inputText id="attributeField" value="#{elementBean.attribute}"/>
-            <h:commandButton value="Wyślij" action="result.xhtml" type="submit"/>
+            <h:outputLabel for="groupField" value="Grupa Kategorii"/> <h:selectOneMenu id="groupField"
+                                                                                       value="#{elementView.categoryId}">
+            <f:selectItems value="#{elementView.categoryEntities}" var="c" itemLabel="#{c.categoryName}"
+                           itemValue="#{c.categoryId}"/>
+        </h:selectOneMenu>
+
+            <h:outputLabel for="groupElement" value="Grupa Elementów"/> <h:selectOneMenu id="groupElement"
+                                                                                         value="#{elementView.elementGroupId}">
+            <f:selectItems value="#{elementView.elementGroupEntities}" var="e" itemLabel="#{e.elementGroupName}"
+                           itemValue="#{e.elementGroupId}"/>
+        </h:selectOneMenu>
+
+            <h:outputLabel for="nazwaField" value="Nazwa"/> <h:inputText id="nazwaField"
+                                                                         value="#{elementView.elementEntity.nameProperty}"/>
+            <h:outputLabel for="sizeField" value="Wartość"/> <h:inputText id="sizeField" converter="javax.faces.Integer"
+                                                                          value="#{elementView.elementEntity.chargeProperty}"/>
+            <h:outputLabel for="attributeField" value="Atrybut"/> <h:inputText id="attributeField"
+                                                                               value="#{elementView.elementEntity.attributeProperty}"/>
+            <h:commandButton value="Wyślij" action="#{elementView.save}" type="submit"/>
         </h:panelGrid>
     </h:form>
 </f:view>

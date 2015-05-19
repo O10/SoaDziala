@@ -1,5 +1,7 @@
 package model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 /**
@@ -7,14 +9,20 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "element", schema = "public", catalog = "soa")
+@NamedQueries({
+        @NamedQuery(name = "Element.findAll", query = "select e from ElementEntity e")
+})
 public class ElementEntity {
     private int elementId;
     private String nameProperty;
     private int chargeProperty;
     private String attributeProperty;
     private CategoryEntity categoryByCategoryId;
+    private ElementGroupEntity elementGroupEntity;
 
     @Id
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
     @Column(name = "element_id", nullable = false, insertable = true, updatable = true)
     public int getElementId() {
         return elementId;
@@ -87,5 +95,15 @@ public class ElementEntity {
 
     public void setCategoryByCategoryId(CategoryEntity categoryByCategoryId) {
         this.categoryByCategoryId = categoryByCategoryId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "element_group_id", referencedColumnName = "element_group_id")
+    public ElementGroupEntity getElementGroupEntity() {
+        return elementGroupEntity;
+    }
+
+    public void setElementGroupEntity(ElementGroupEntity elementGroupEntity) {
+        this.elementGroupEntity = elementGroupEntity;
     }
 }
