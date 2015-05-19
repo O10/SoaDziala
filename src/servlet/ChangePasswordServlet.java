@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.util.Base64;
+import java.util.List;
 
 /**
  * Created by O10 on 19.05.15.
@@ -23,9 +24,7 @@ public class ChangePasswordServlet extends HttpServlet {
     UserDaoService userDaoService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Inside post");
         String remoteUser = request.getRemoteUser();
-        System.out.println("User is " + remoteUser);
 
         User userByLogin = userDaoService.getUserByLogin(remoteUser);
 

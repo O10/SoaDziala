@@ -25,4 +25,8 @@ public class UserDaoService {
         user.setUsername(username);
         this.em.merge(user);
     }
+
+    public List<User> getAllUsers(){
+        return this.em.createNamedQuery("User.findAll").getResultList();
+    }
 }
