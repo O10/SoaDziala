@@ -8,6 +8,7 @@
         <class>model.CategoryGroupEntity</class>
         <class>model.ElementEntity</class>
         <class>model.ElementGroupEntity</class>
+        <class>model.User</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/soa"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
