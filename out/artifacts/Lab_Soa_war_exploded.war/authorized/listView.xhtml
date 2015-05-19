@@ -18,7 +18,7 @@
                 <tr>
                     <td><b>#{category.categoryName}</b></td>
                     <td>#{category.sizeProperty}</td>
-                    <td><h:commandButton action="#{listView.deleteCategoryEntity}" value="Usuń"
+                    <td><h:commandButton action="#{listView.deleteCategoryEntity(category.categoryId)}" value="Usuń"
                                          type="button"/></td>
                     <td><h:button value="Edytuj" outcome="addCategory"><f:param name="categoryID"
                                                                                 value="#{category.categoryId}"/></h:button>
