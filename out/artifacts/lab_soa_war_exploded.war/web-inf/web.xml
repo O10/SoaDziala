@@ -13,9 +13,6 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
-
-
-
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>secureDomain</realm-name>
@@ -42,6 +39,9 @@
         <auth-constraint>
             <description/>
             <role-name>ADMIN</role-name>
+            <role-name>USERA</role-name>
+            <role-name>USERB</role-name>
+            <role-name>USERC</role-name>
         </auth-constraint>
         <user-data-constraint>
             <transport-guarantee>NONE</transport-guarantee>
@@ -67,5 +67,14 @@
     </security-constraint>
     <security-role>
         <role-name>ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <role-name>USERA</role-name>
+    </security-role>
+    <security-role>
+        <role-name>USERB</role-name>
+    </security-role>
+    <security-role>
+        <role-name>USERC</role-name>
     </security-role>
 </web-app>
