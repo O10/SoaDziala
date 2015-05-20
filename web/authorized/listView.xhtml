@@ -7,39 +7,34 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <f:view>
-    <h:button value="Dodaj Element" outcome="addElement" style="width: 300px; height: 100px;"/>
-    <h:button value="Dodaj Kategorię" outcome="addCategory" style="width: 300px; height: 100px;"/>
     <ui:repeat value="#{listView.categoryGroupList}" var="categoryGroup">
         <table>
-            <tr>
-                <td><font size="15">#{categoryGroup.categoryGroupName}</font></td>
+            <tr id="categoryGroup">
+                <td>#{categoryGroup.categoryGroupName}</td>
             </tr>
             <ui:repeat value="#{categoryGroup.categoriesByCategoryGroupId}" var="category">
-                <tr>
+                <tr id="category">
                     <td><b>#{category.categoryName}</b></td>
                     <td>#{category.sizeProperty}</td>
-                    <td><h:commandButton action="#{listView.deleteCategoryEntity(category.categoryId)}" value="Usuń"
-                                         type="button"/></td>
-                    <td><h:button value="Edytuj" outcome="addCategory"><f:param name="categoryID"
-                                                                                value="#{category.categoryId}"/></h:button>
-                    </td>
+                    <td><h:commandButton action="#{listView.deleteCategoryEntity(category.categoryId)}" value="Delete" type="button"/></td>
+                    <td><h:button value="Edit" outcome="addCategory"><f:param name="categoryID" value="#{category.categoryId}"/></h:button></td>
                 </tr>
 
                 <ui:repeat value="#{category.elementsByCategoryId}" var="element">
-                    <tr>
-                        <td colspan="4">--------------------------------------------#{element.elementGroupEntity.elementGroupName}</td>
+                    <tr id="element">
+                        <td colspan="1">#{element.elementGroupEntity.elementGroupName}</td>
                         <td>#{element.nameProperty}</td>
                         <td>#{element.chargeProperty}</td>
                         <td>#{element.attributeProperty}</td>
-                        <td><h:button value="Edytuj" outcome="addElement"><f:param name="elementID"
-                                                                                   value="#{element.elementId}"/></h:button>
-                        </td>
-                        <td><h:commandButton action="#{listView.deleteElementEntity(element.elementId)}" value="Usuń"
-                                             type="button"/></td>
+                        <td><h:button value="Edit" outcome="addElement"><f:param name="elementID" value="#{element.elementId}"/></h:button></td>
+                        <td><h:commandButton action="#{listView.deleteElementEntity(element.elementId)}" value="Delete" type="button"/></td>
                     </tr>
                 </ui:repeat>
             </ui:repeat>
         </table>
     </ui:repeat>
+
+    <h:button value="Add element" outcome="addElement" style="width: 300px; height: 300px;"/>
+    <h:button value="Add category" outcome="addCategory" style="width: 300px; height: 300px;"/>
 </f:view>
 </html>
