@@ -44,5 +44,7 @@
     <orderEntry type="library" name="postgresql:postgresql:9.0-801.jdbc4" level="project" />
     <orderEntry type="library" name="org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" level="project" />
     <orderEntry type="library" name="Mojarra-2.2.1" level="project" />
+    <orderEntry type="library" name="resteasy-jaxrs-3.0.11.Final" level="project" />
+    <orderEntry type="library" name="jaxrs-api-3.0.10.Final" level="project" />
   </component>
 </module>

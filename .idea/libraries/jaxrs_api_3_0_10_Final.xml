@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jaxrs-api-3.0.10.Final">
+    <CLASSES>
+      <root url="jar:///usr/local/Cellar/wildfly-as/8.2.0.Final/libexec/modules/system/layers/base/javax/ws/rs/api/main/jaxrs-api-3.0.10.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
