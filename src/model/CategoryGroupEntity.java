@@ -10,7 +10,8 @@ import java.util.Collection;
 @Entity
 @Table(name = "category_group", schema = "public", catalog = "soa")
 @NamedQueries({
-        @NamedQuery(name = "CategoryGroup.findAll", query = "select c from CategoryGroupEntity c")
+        @NamedQuery(name = "CategoryGroup.findAll", query = "select c from CategoryGroupEntity c"),
+        @NamedQuery(name = "CategoryGroup.findByName", query = "select c from CategoryGroupEntity c where categoryGroupName like :categoryName")
 })
 public class CategoryGroupEntity implements Serializable {
     private int categoryGroupId;

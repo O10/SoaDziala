@@ -58,6 +58,16 @@ public class DAOService {
         return this.em.createNamedQuery("Element.findAll").getResultList();
     }
 
+    public CategoryGroupEntity getByCategoryName(String name){
+        try{
+            CategoryGroupEntity categoryGroupEntity=(CategoryGroupEntity) this.em.createNamedQuery("CategoryGroup.findByName").setParameter("categoryName", name).getSingleResult();
+            return categoryGroupEntity;
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
+
     public List<CategoryGroupEntity> getAllCategoryGroups() {
 
         List<CategoryGroupEntity> resultList = this.em.createNamedQuery("CategoryGroup.findAll").getResultList();
