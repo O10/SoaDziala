@@ -9,10 +9,8 @@ import model.CategoryGroupEntity;
 import model.ElementEntity;
 
 import javax.ejb.EJB;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
@@ -48,6 +46,35 @@ public class MessageRestService {
         }
 
         return exportedCategoryGroups;
+    }
+
+    @POST
+    @Path("/{category}/{cat_id}")
+    public Response addElement(@PathParam("category") String category, @PathParam("cat_id") int catId, ExportedElement element) {
+        CategoryGroupEntity ca = DAOService.getByCategoryName(category);
+        System.out.println("name is "+element.getNameProperty()+"  id "+catId);
+
+        if (ca == null) {
+            return Response.status(404).build();
+        }
+
+        for (CategoryEntity categoryEntity : ca.getCategoriesByCategoryGroupId()) {
+            if (categoryEntity.getCategoryId() == catId) {
+                ElementEntity elementEntity = new ElementEntity();
+                elementEntity.setAttributeProperty(element.getAttributeProperty());
+                elementEntity.setCategoryByCategoryId(categoryEntity);
+                elementEntity.setChargeProperty(element.getChargeProperty());
+                elementEntity.setNameProperty(element.getNameProperty());
+                DAOService.saveElement(elementEntity);
+                return Response.status(201).build();
+
+            }
+        }
+//        return Response.status(404).build();
+        return Response.status(404).build();
+
+
+
     }
 
 
