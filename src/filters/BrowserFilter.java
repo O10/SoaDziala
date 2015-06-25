@@ -19,7 +19,7 @@ public class BrowserFilter implements Filter {
         System.out.println("User agent header is " + userAgentHeader);
 
         if (userAgentHeader != null && userAgentHeader.toLowerCase().contains("chrome")) {
-            return;
+            //return;
         }
         chain.doFilter(req, resp);
     }

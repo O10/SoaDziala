@@ -7,6 +7,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Lab_Soa" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="PrimeFaces-5.2" />
+          <element id="library" level="project" name="atmosphere-runtime-2.3.2" />
+        </element>
       </element>
     </root>
   </artifact>

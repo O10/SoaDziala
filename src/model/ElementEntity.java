@@ -10,7 +10,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "element", schema = "public", catalog = "soa")
 @NamedQueries({
-        @NamedQuery(name = "Element.findAll", query = "select e from ElementEntity e")
+        @NamedQuery(name = "Element.findAll", query = "select e from ElementEntity e"),
+        @NamedQuery(name = "Element.findTop", query = "select e from ElementEntity e order by chargeProperty desc ")
 })
 public class ElementEntity {
     private int elementId;
